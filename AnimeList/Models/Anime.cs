@@ -23,6 +23,8 @@ namespace AnimeList.Models
 
         public AnimeFormat? Format { get; set; }
 
+        public double? Price { get; set; }
+
         public string? TrailerUrl { get; set; }
 
         // Relationships

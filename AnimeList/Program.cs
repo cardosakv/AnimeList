@@ -1,11 +1,13 @@
 using AnimeList.Data;
+using AnimeList.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IVoiceActorsService, VoiceActorsService>();
+builder.Services.AddControllersWithViews();5
 
 var app = builder.Build();
 
@@ -27,5 +29,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+AppDbInitializer.Seed(app);
 
 app.Run();

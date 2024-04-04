@@ -1,0 +1,49 @@
+﻿@model IEnumerable<VoiceActor>
+
+@{
+	ViewBag.Title = "Voice Actors";
+}
+
+<div class="row">
+	<div class="col-md-8 offset-md-2">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Picture</th>
+					<th>Name</th>
+					<th>Language</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var voiceActor in Model)
+				{
+					<tr>
+						<td class="align-middle">
+							<img class="rounded" style="height: 200px" src="@voiceActor.ImageUrl" alt="@voiceActor.Name" />
+						</td>
+						<td class="align-middle">
+							@voiceActor.Name
+						</td>
+						<td class="align-middle">
+							@voiceActor.Language
+						</td>
+						<td class="align-middle">
+							<form asp-action="Delete" asp-route-id="@voiceActor.Id" class="mx-1 h-100">
+								<a class="btn btn-outline-primary mx-1 h-100" asp-action="Edit" asp-route-id="@voiceActor.Id"><i class="bi bi-pencil-square pe-2"></i>Edit</a>
+								<a class="btn btn-outline-info mx-1 h-100" asp-action="Details" asp-route-id="@voiceActor.Id"><i class="bi bi-eye pe-2"></i>Details</a>
+								<button type="submit" class="btn btn-danger"><i class="bi bi-trash pe-2"></i>Delete</button
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="text-white" style="position:fixed; bottom:25px; right:25px">
+	<a asp-controller="VoiceActors" asp-action="Create" class="btn btn-success">
+		<i class="bi bi-plus-circle me-2"></i>Add New
+	</a>
+</div>

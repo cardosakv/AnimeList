@@ -9,7 +9,6 @@ namespace AnimeList.Data
         public DbSet<VoiceActor> VoiceActors { get; set; }
         public DbSet<Studio> Studios { get; set; }
         public DbSet<Producer> Producers { get; set; }
-        public DbSet<Character> Characters { get; set; }
         public DbSet<Anime_VoiceActor> Animes_VoiceActors { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)

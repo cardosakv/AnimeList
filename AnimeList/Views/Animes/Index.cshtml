@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Anime>
+
+@{
+    ViewBag.Title = "Animes";
+}
+
+<div class="row">
+    @foreach (var anime in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @anime.Title
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@anime.ImageUrl" style="height: 100%; max-width:100%" alt="@anime.Title">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@anime.Synopsis</p>
+                            <p class="card-text"><b>Studio: </b>@anime.Studio?.Name</p>
+                            <p class="card-text"><b>Format: </b>@anime.Format</p>
+                            <p class="card-text"><b>Release Date: </b>@anime.ReleaseDate?.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>Genre: </b>@anime.Genre</p>
+                            <p class="card-text ">
+                                <b>Status: </b>
+                                @if (DateTime.Now >= anime.ReleaseDate)
+                                {
+                                    <span class="badge bg-success text-white">AIRING</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-primary text-white">UPCOMING</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                <a class="btn btn-success text-white float-end">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart (@anime.Price?.ToString("c"))
+                                </a>
+
+                                <a class="btn btn-outline-primary float-right">
+                                    <i class="bi bi-eye-fill"></i> Show Details
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
